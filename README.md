@@ -1,4 +1,6 @@
-# To run
+# Holy Cow
+A cow fortune-teller app, build to learn abit about fastapi
+
 
 ## Using Docker
 ```sh
