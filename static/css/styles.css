@@ -27,14 +27,14 @@ button {
   text-align: left !important;
 }
 
-/* #responseContainer, */
+#responseContainer,
 #fortuneContainer {
   width: auto;
 }
 
-/* #getResponseBtn { */
-/*   display: none; */
-/* } */
+#getResponseBtn {
+  display: none;
+}
 
 .buttonContainer {
   display: flex;

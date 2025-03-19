@@ -31,36 +31,36 @@ async def random():
     return {"fortune": msg, "raw": fortune}
 
 
-# class ConvoRequest(BaseModel):
-#     msg: str
-#
-#
-# class ConvoResponse(BaseModel):
-#     response: str
-#
-#
-# @app.post("/response", response_model=ConvoResponse)
-# async def response(request: ConvoRequest):
-#     msg = (
-#         "response to this message, be short (less than 15 words) and serious, dont use icon: "
-#         + request.msg
-#     )
-#
-#     cow = read_dot_cow(
-#         StringIO(
-#             """
-# $the_cow = <<"EOC";
-#                     ^__^    /
-#             _______/($eyes)   /
-#         /\\/(       /(__)
-#            ||w----[|
-#            ||     ||
-# EOC
-# """
-#         )
-#     )
-#
-#     response = ollama.chat(model="mistral", messages=[{"role": "user", "content": msg}])
-#     clean_msg = response["message"]["content"].replace('"', "")
-#     response = cowsay(clean_msg, cowfile=cow)
-#     return {"response": response}
+class ConvoRequest(BaseModel):
+    msg: str
+
+
+class ConvoResponse(BaseModel):
+    response: str
+
+
+@app.post("/response", response_model=ConvoResponse)
+async def response(request: ConvoRequest):
+    msg = (
+        "response to this message, be short (less than 15 words) and serious, dont use icon: "
+        + request.msg
+    )
+
+    cow = read_dot_cow(
+        StringIO(
+            """
+$the_cow = <<"EOC";
+                    ^__^    /
+            _______/($eyes)   /
+        /\\/(       /(__)
+           ||w----[|
+           ||     ||
+EOC
+"""
+        )
+    )
+
+    response = ollama.chat(model="mistral", messages=[{"role": "user", "content": msg}])
+    clean_msg = response["message"]["content"].replace('"', "")
+    response = cowsay(clean_msg, cowfile=cow)
+    return {"response": response}
