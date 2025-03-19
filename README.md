@@ -15,3 +15,6 @@ pip install -r requirements
 fastapi run main.py 
 ```
 
+Also checkout the `responsive` version for AI response with ollama (not dockerized).
+
+![screenshot](./responsive.png)
