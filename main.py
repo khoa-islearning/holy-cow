@@ -5,7 +5,6 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from starlette.requests import Request
 from cowsay import cowsay, read_dot_cow
-import ollama
 from pydantic import BaseModel
 from io import StringIO
 
