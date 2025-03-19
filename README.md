@@ -1,6 +1,7 @@
 # Holy Cow
 A cow fortune-teller app, build to learn abit about fastapi
 
+[screenshot](./screenshot.png)
 
 ## Using Docker
 ```sh
