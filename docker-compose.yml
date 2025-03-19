@@ -1,0 +1,6 @@
+services:
+  holly-cow:
+    build: .
+    ports:
+      - "8000:8000"
+
