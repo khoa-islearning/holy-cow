@@ -1,16 +1,11 @@
 # Holy Cow
 A cow fortune-teller app, build to learn abit about fastapi
 
+## Responsive - Get Response from your chosen AI model
 
-## Using Docker
-```sh
-docker compose build
-docker compose run
 ```
-
-## Normal
+curl -fsSL https://ollama.com/install.sh | sh
+ollama pull mistral
+pip install -r requirements.txt
+fastapi run main.py
 ```
-pip install -r requirements
-fastapi run main.py 
-```
-
