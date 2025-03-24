@@ -8,7 +8,7 @@ RUN apt update && apt install -y curl && rm -rf /var/lib/apt/lists/*
 RUN curl -fsSL https://ollama.com/install.sh | sh
 
 # Pull the Mistral model
-RUN ollama serve & sleep 5 && ollama pull mistral 
+RUN ollama serve & sleep 5 && ollama pull llama3.2:1b 
 
 # install req
 COPY requirements.txt /src/requirements.txt

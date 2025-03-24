@@ -8,6 +8,7 @@ from cowsay import cowsay, read_dot_cow
 import ollama
 from pydantic import BaseModel
 from io import StringIO
+import unicodedata
 
 app = FastAPI()
 
@@ -42,9 +43,10 @@ class ConvoResponse(BaseModel):
 @app.post("/response", response_model=ConvoResponse)
 async def response(request: ConvoRequest):
     msg = (
-        "response to this message, be short (less than 15 words) and serious, dont use icon: "
+        "response to this message, be short (less than 15 words), witty and serious, dont use icon and use full-width character: "
         + request.msg
     )
+    # print(msg)
 
     cow = read_dot_cow(
         StringIO(
@@ -60,7 +62,12 @@ EOC
         )
     )
 
-    response = ollama.chat(model="mistral", messages=[{"role": "user", "content": msg}])
-    clean_msg = response["message"]["content"].replace('"', "")
+    response = ollama.chat(
+        model="llama3.2:1b", messages=[{"role": "user", "content": msg}]
+    )
+    clean_msg = unicodedata.normalize(
+        "NFKC", response["message"]["content"].replace('"', "")
+    )
+    # print(repr(clean_msg))
     response = cowsay(clean_msg, cowfile=cow)
     return {"response": response}
